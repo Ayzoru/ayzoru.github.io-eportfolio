@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDG 3 Student e-Portfolio | Mobile Programming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* CareGo Cheerful Dark Mode Palette */
+            --bg-dark: #0B0F12;
+            --surface-dark: #161D22;
+            --surface-card: #1D262D;
+            --primary: #6ED7BB;
+            --primary-variant: #4FA892;
+            --secondary: #A6D785;
+            --on-surface: #E3E9EC;
+            --on-surface-variant: #8C9CA5;
+            --border-color: #2D3A44;
+            --nav-bg: rgba(11, 15, 18, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--on-surface);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Sticky Navigation Bar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--on-surface-variant);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Section Layouts */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 40px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Home / Profile Section */
+        #home {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(110, 215, 187, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(110, 215, 187, 0.2);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .profile-meta {
+            margin-top: 2.5rem;
+            padding: 2rem;
+            background-color: var(--surface-dark);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            text-align: left;
+        }
+
+        .meta-item span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--on-surface-variant);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-item p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--on-surface);
+        }
+
+        /* Responsive Video Container (16:9) */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            background-color: #000;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Cards Layout Grid */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(110, 215, 187, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.3px;
+        }
+
+        .card p {
+            color: var(--on-surface-variant);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .reflection-box {
+            background-color: rgba(255,255,255,0.03);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 12px 12px 0;
+            font-size: 0.925rem;
+            color: var(--on-surface);
+            margin-top: auto;
+        }
+
+        .reflection-box em {
+            display: block;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        /* Action Buttons */
+        .btn-github {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: var(--bg-dark);
+            text-decoration: none;
+            padding: 0.75rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-github:hover {
+            background-color: var(--primary-variant);
+        }
+
+        /* Specific Project 2 Accent Modification */
+        .project-card-2 h3 {
+            color: var(--secondary);
+        }
+        .project-card-2 .btn-github {
+            background-color: var(--secondary);
+        }
+        .project-card-2 .reflection-box {
+            border-left-color: var(--secondary);
+        }
+        .project-card-2 .reflection-box em {
+            color: var(--secondary);
+        }
+
+        /* Structural Content Blocks */
+        .text-block-layout {
+            background-color: var(--surface-dark);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 24px;
+            font-size: 1.1rem;
+            color: var(--on-surface);
+        }
+
+        /* Skills Badge Wrapper */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-badge {
+            background-color: var(--surface-card);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--on-surface);
+        }
+
+        .skill-badge.highlight {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: rgba(110, 215, 187, 0.05);
+        }
+
+        /* Engineering Resource List */
+        .resources-list {
+            list-style: none;
+        }
+
+        .resources-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--on-surface-variant);
+        }
+
+        .resources-list li::before {
+            content: "🌱";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .resources-list strong {
+            color: var(--on-surface);
+        }
+
+        /* Footer View */
+        footer {
+            background-color: #080B0D;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--on-surface-variant);
+        }
+
+        footer p strong {
+            color: var(--primary);
+        }
+
+        /* Media Queries responsiveness */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            section {
+                padding-top: 5rem;
+            }
+            .profile-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#home" class="logo">CareGo.io</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#labs">Labs</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero-content">
+            <span class="hero-badge">SDG 3: Good Health & Well-being</span>
+            <h1>Mobile Programming<br><span style="color: var(--primary);">Academic e-Portfolio</span></h1>
+            <p style="font-size: 1.2rem; color: var(--on-surface-variant); margin-top: 1rem;">
+                Welcome to my mobile software engineering e-Portfolio. This platform presents my structural progression and technical development journey throughout the course, engineering robust native Android solutions built with Jetpack Compose that align with global healthcare accessibility objectives.
+            </p>
+
+            <div class="profile-meta">
+                <div class="meta-item">
+                    <span>Student Name</span>
+                    <p>Aizulfadhli Bin Zainuddin</p>
+                </div>
+                <div class="meta-item">
+                    <span>Matric Number</span>
+                    <p>A221002</p>
+                </div>
+                <div class="meta-item">
+                    <span>Programme</span>
+                    <p>Bachelor of Software Engineering with Honours</p>
+                </div>
+                <div class="meta-item">
+                    <span>Instructor</span>
+                    <p>Mr. Nelson Budin Anak Sana</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="labs">
+        <h2 class="section-title">Laboratory Experiments</h2>
+        <div class="grid-layout">
+            
+            <div class="card">
+                <h3>Lab 1: UI Layout Engineering</h3>
+                <p>Developing robust, static layouts components utilizing modern declarative layout containers trees.</p>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/b7wIqvjRJMo?si=3r_mjpwTOLiCcY0N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="reflection-box">
+                    <em>Reflection Log</em>
+                    Learned the foundational mechanics of Jetpack Compose component tree hierarchies. Discovered how declarative layouts eliminate complex traditional XML layout parsing workflows completely, speeding up design iterations.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Lab 2: State & Interactions</h3>
+                <p>Implementing dynamic reactive states properties responding to native user interface interaction events handlers.</p>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/mHfSAKLQSO8?si=ySw4B6itveKX2bNV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="reflection-box">
+                    <em>Reflection Log</em>
+                    Explored state hoisting techniques using remember and mutableStateOf hooks. Gained practical experience managing screen lifecycle recomposition events safely when user interaction thresholds trigger state modifications.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Lab 3: Material Design Styling</h3>
+                <p>Applying uniform application customization profiles structural color scheme tokens shapes attributes guidelines.</p>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/qH7hO3WR_x0?si=90APa_0hCiXJvmHn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="reflection-box">
+                    <em>Reflection Log</em>
+                    Configured application theme templates extending default typography and Material3 dark palette properties. Mastered uniform element borders, surface elevation, and accessible contrast ratios across components.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Lab 4: Multi-Screen Navigation</h3>
+                <p>Constructing multi-route controller paths streaming arguments structures between view models composables cleanly.</p>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/fo26NRMXEoI?si=gly86ibCVO01d9aT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="reflection-box">
+                    <em>Reflection Log</em>
+                    Developed robust hierarchical navigation graphs using NavHost configurations. Discovered the importance of separating distinct view paths to manage application logic and decouple state scope across different features.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Lab 5: Room SQLite Data Layer</h3>
+                <p>Establishing native local background data schema entities executing queries via asynchronous operations interfaces.</p>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/XLwIPwh42ZM?si=auXXKsmbYP3BrxsW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="reflection-box">
+                    <em>Reflection Log</em>
+                    Substituted transient states with structured local persistence using the Room Library. Understood the structural pipeline of utilizing Abstract Data Access Objects (DAOs) to perform safe, asynchronous CRUD threads operations while keeping data accessible offline.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Core Project Artifacts</h2>
+        <div class="grid-layout">
+            
+            <div class="card">
+                <h3>Project 1: CareGo Core Engine</h3>
+                <p><strong>Problem Statement:</strong> Traditional personal health logs suffer from transient app lifecycles where closing sessions clears unsaved state variables, rendering historical health trends and essential logs completely untrackable for users trying to monitor their daily well-being.</p>
+                <a href="" class="btn-github" target="_blank">🗂️ View on GitHub</a>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/3WVD4uID4GE?si=itAbT7sjtAp5Rw1P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="reflection-box">
+                    <em>Key Architecture Discovery</em>
+                    Successfully integrated structured multi-screen workflows backed by a central state-sharing ViewModel container pattern, ensuring atomic, predictable unidirectional data streaming paths that safely survive configuration alterations.
+                </div>
+            </div>
+
+            <div class="card project-card-2">
+                <h3>Project 2: Connected CareGo Ecosystem</h3>
+                <p><strong>Problem Statement:</strong> Users lack persistent offline data logging, live dynamic health advice, cloud backup synchronization for multiple devices, and a fast, automated way to discover local medical facilities during an unexpected medical situation or sudden physical emergency.</p>
+                <a href="" class="btn-github" target="_blank" style="color: #0B0F12;">🗂️ View on GitHub</a>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/spThsbSrfhE?si=65Wglr5JRSc2NAdx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="reflection-box">
+                    <em>Key Architecture Discovery</em>
+                    Engineered a multi-faceted production app utilizing local Room data pools, continuous Firebase cloud synchronization pipelines, Retrofit HTTP network clients for REST APIs, and GPS sensory location listeners to trigger implicit intents for immediate localized routing map services.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="reflection">
+        <h2 class="section-title">Learning Journey Reflection</h2>
+        <div class="text-block-layout">
+            <p>Tracking my progress from building basic static layout views in Lab 1 up to launching full asynchronous network integrations, cloud synchronization collections, and physical hardware location handlers in Project 2 has been an incredibly rewarding engineering milestone. Mitigating native android framework state issues and thread blockages taught me detailed debugging workflows and how to confidently isolate background worker services from rendering loop fragments. This architectural development mindset prepares me perfectly to engineer scalable, high-performance production mobile applications in the software industry.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Skills & Tech Stack Matrix</h2>
+        <div class="skills-container">
+            <span class="skill-badge highlight">Kotlin Core Language</span>
+            <span class="skill-badge highlight">Jetpack Compose Layout Engine</span>
+            <span class="skill-badge">Unidirectional State Flow (MutableStateFlow)</span>
+            <span class="skill-badge highlight">Room Local Persistence Database</span>
+            <span class="skill-badge highlight">Retrofit Network Client</span>
+            <span class="skill-badge">Asynchronous Web Rest APIs (Gson Converter)</span>
+            <span class="skill-badge highlight">Firebase Firestore Synchronization</span>
+            <span class="skill-badge">On-Device Hardware Sensors Interface</span>
+            <span class="skill-badge">FusedLocationProviderClient (GPS Services)</span>
+            <span class="skill-badge">Implicit System Intents Router</span>
+        </div>
+    </section>
+
+    <section id="resources">
+        <h2 class="section-title">Resources & Engineering References</h2>
+        <div class="text-block-layout">
+            <ul class="resources-list">
+                <li><strong>Dynamic External REST Endpoint Web API Layer:</strong> Advice Slip Network System utilized for parsing real-time advice health guidelines packets asynchronously using Kotlin Coroutines.</li>
+                <li><strong>Local Architecture Core Packages Components Libraries:</strong> Android Jetpack Room Database framework tooling, Google Play Services GPS hardware systems parameters dependencies.</li>
+                <li><strong>Cloud Remote Infrastructure Core Services Providers:</strong> Firebase Firestore Cloud database storage integration pipelines for real-time user state tracking.</li>
+                <li><strong>Generative AI Assistance Engineering Disclosure Acknowledgment:</strong> Large Language Models (Gemini Architecture models templates) used ethically and responsibly to refactor visual container margins alignments, correct text wrap layout aesthetics, and optimize semantic HTML structure tags code formatting rules.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>Aizulfadhli Bin Zainuddin© 2026 <strong></strong> — Matric No: A221002</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #52636C;">Universiti Kebangsaan Malaysia • Faculty of Information Science & Technology (FTSM)</p>
+    </footer>
+
+</body>
+</html>
