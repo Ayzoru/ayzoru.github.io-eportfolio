@@ -343,6 +343,32 @@
         .resources-list strong {
             color: var(--on-surface);
         }
+        .drive-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #0f9d58; /* Google Green color theme */
+            color: white !important;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 12px 0;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .drive-btn:hover {
+            background-color: #0b7b43;
+            transform: translateY(-1px);
+        }
+
+        .drive-btn svg {
+            flex-shrink: 0;
+        }
 
         /* Footer View */
         footer {
@@ -431,10 +457,15 @@
                 <div class="video-container">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/b7wIqvjRJMo?si=3r_mjpwTOLiCcY0N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
+                
                 <div class="reflection-box">
                     <em>Reflection Log</em>
                     Learned the foundational mechanics of Jetpack Compose component tree hierarchies. Discovered how declarative layouts eliminate complex traditional XML layout parsing workflows completely, speeding up design iterations.
                 </div>
+                <a href="https://drive.google.com/drive/folders/1YKjUO_eaJ1CwJm6lTl8Drp3kN3M2jkmH?usp=sharing" target="_blank" class="drive-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16" fill="currentColor"><path d="M339 314.9L175.4 32h62.7l163.6 282.9H339zm-93.2 24.3L136.2 512h125.4l109.6-172.8H245.8zm-91.1-24.3l-59-102.1L0 382.2l59 102.2 95.7-169.4z"/></svg>
+                    View Lab 1 Screenshots
+                </a>
             </div>
 
             <div class="card">
@@ -443,10 +474,15 @@
                 <div class="video-container">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/mHfSAKLQSO8?si=ySw4B6itveKX2bNV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
+                
                 <div class="reflection-box">
                     <em>Reflection Log</em>
                     Explored state hoisting techniques using remember and mutableStateOf hooks. Gained practical experience managing screen lifecycle recomposition events safely when user interaction thresholds trigger state modifications.
                 </div>
+                <a href="https://drive.google.com/drive/folders/1OS2nLlV1TCUJs8uh8FMuC1LT8rlQpfTN?usp=sharing" target="_blank" class="drive-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16" fill="currentColor"><path d="M339 314.9L175.4 32h62.7l163.6 282.9H339zm-93.2 24.3L136.2 512h125.4l109.6-172.8H245.8zm-91.1-24.3l-59-102.1L0 382.2l59 102.2 95.7-169.4z"/></svg>
+                    View Lab 2 Screenshots
+                </a>
             </div>
 
             <div class="card">
@@ -455,10 +491,15 @@
                 <div class="video-container">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/qH7hO3WR_x0?si=90APa_0hCiXJvmHn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
+                
                 <div class="reflection-box">
                     <em>Reflection Log</em>
                     Configured application theme templates extending default typography and Material3 dark palette properties. Mastered uniform element borders, surface elevation, and accessible contrast ratios across components.
                 </div>
+                <a href="https://drive.google.com/drive/folders/1S_Iq1XYLOhCZjrA9Ih1Hl0WH0CWdKtGF?usp=sharing" target="_blank" class="drive-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16" fill="currentColor"><path d="M339 314.9L175.4 32h62.7l163.6 282.9H339zm-93.2 24.3L136.2 512h125.4l109.6-172.8H245.8zm-91.1-24.3l-59-102.1L0 382.2l59 102.2 95.7-169.4z"/></svg>
+                    View Lab 3 Screenshots
+                </a>
             </div>
 
             <div class="card">
@@ -467,10 +508,15 @@
                 <div class="video-container">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/fo26NRMXEoI?si=gly86ibCVO01d9aT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
+                
                 <div class="reflection-box">
                     <em>Reflection Log</em>
                     Developed robust hierarchical navigation graphs using NavHost configurations. Discovered the importance of separating distinct view paths to manage application logic and decouple state scope across different features.
                 </div>
+                <a href="https://drive.google.com/drive/folders/1tNjTC1gFONH-S3LdcJ8jdNBkQ-Zk0jR0?usp=sharing" target="_blank" class="drive-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16" fill="currentColor"><path d="M339 314.9L175.4 32h62.7l163.6 282.9H339zm-93.2 24.3L136.2 512h125.4l109.6-172.8H245.8zm-91.1-24.3l-59-102.1L0 382.2l59 102.2 95.7-169.4z"/></svg>
+                    View Lab 4 Screenshots
+                </a>
             </div>
 
             <div class="card">
@@ -479,10 +525,15 @@
                 <div class="video-container">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/XLwIPwh42ZM?si=auXXKsmbYP3BrxsW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
+                
                 <div class="reflection-box">
                     <em>Reflection Log</em>
                     Substituted transient states with structured local persistence using the Room Library. Understood the structural pipeline of utilizing Abstract Data Access Objects (DAOs) to perform safe, asynchronous CRUD threads operations while keeping data accessible offline.
                 </div>
+                <a href="https://drive.google.com/drive/folders/1Max6bZ6vEDVkODW8CYPijBnrSUr36UES?usp=sharing" target="_blank" class="drive-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16" fill="currentColor"><path d="M339 314.9L175.4 32h62.7l163.6 282.9H339zm-93.2 24.3L136.2 512h125.4l109.6-172.8H245.8zm-91.1-24.3l-59-102.1L0 382.2l59 102.2 95.7-169.4z"/></svg>
+                    View Lab 5 Screenshots
+                </a>
             </div>
 
         </div>
